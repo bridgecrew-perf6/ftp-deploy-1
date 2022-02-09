@@ -44,7 +44,7 @@ $app->registerCommand('ftp-deploy', function () use ($app) {
                     if (file_exists($c)) {
                         $app->getPrinter()->info('Uploading file... ' . $c);
 
-                        $client->upload($c, $c);
+                        $client->upload($c, $c, false);
                     } else {
                         $app->getPrinter()->info('Delete file... ' . $c);
                         $client->removeFile($c);
