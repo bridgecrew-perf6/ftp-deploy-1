@@ -1,0 +1,65 @@
+#!/usr/bin/php
+<?php
+
+if (php_sapi_name() !== 'cli') {
+    exit;
+}
+
+require(__DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
+
+use Minicli\App;
+use Lazzard\FtpClient\Connection\FtpSSLConnection;
+use Lazzard\FtpClient\Config\FtpConfig;
+use Lazzard\FtpClient\FtpClient;
+
+$app = new App([
+    'server' => getenv('SERVER'),
+    'username' => getenv('USERNAME'),
+    'password' => getenv('PASSWORD'),
+]);
+
+$app->registerCommand('ftp-deploy', function () use ($app) {
+    $app->getPrinter()->info('check diff...');
+
+    $str_diff = `git diff --name-only HEAD HEAD~1`;
+
+    if (!empty($str_diff)) {
+        $changes = preg_split('/\r\n|\n|\r/', $str_diff, -1, PREG_SPLIT_NO_EMPTY);
+
+        if (!empty($changes)) {
+            try {
+                if (!extension_loaded('ftp')) {
+                    throw new \RuntimeException("FTP extension not loaded.");
+                }
+
+                $connection = new FtpSSLConnection($app->config->server, $app->config->username, $app->config->password);
+                $connection->open();
+
+                $config = new FtpConfig($connection);
+                $config->setPassive(true);
+
+                $client = new FtpClient($connection);
+
+                foreach ($changes as $c) {
+                    if (file_exists($c)) {
+                        $app->getPrinter()->info('Uploading file... ' . $c);
+
+                        $client->upload($c, $c);
+                    } else {
+                        $app->getPrinter()->info('Delete file... ' . $c);
+                        $client->removeFile($c);
+                    }
+                }
+
+                $connection->close();
+            } catch (\Throwable $ex) {
+                $app->getPrinter()->info($ex->getMessage());
+            }
+        }
+    }
+
+    $app->getPrinter()->success("Finished deploy");
+    return 0;
+});
+
+$app->runCommand($argv);

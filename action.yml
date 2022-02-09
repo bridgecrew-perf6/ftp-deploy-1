@@ -1,0 +1,9 @@
+# action.yml
+name: 'Ftp deploy'
+description: 'Ftp deploy project'
+outputs:
+  response:
+    description: 'Output from command'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

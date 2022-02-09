@@ -1,0 +1,164 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "da13cb99869f51b26d48e887e786d102",
+    "packages": [
+        {
+            "name": "lazzard/php-ftp-client",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lazzard/php-ftp-client.git",
+                "reference": "5c33751793e83d42e112740d3638ad1a2b692730"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lazzard/php-ftp-client/zipball/5c33751793e83d42e112740d3638ad1a2b692730",
+                "reference": "5c33751793e83d42e112740d3638ad1a2b692730",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ftp": "*",
+                "php": "^7.4 | 8.0.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lazzard\\FtpClient\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "El Amrani Chakir",
+                    "email": "elamrani.sv.laza@gmail.com",
+                    "homepage": "https://github.com/AmraniCh"
+                }
+            ],
+            "description": "This library provides helper classes and methods to manage your FTP files in an OOP way.",
+            "keywords": [
+                "ftp-client",
+                "ftp-library",
+                "php",
+                "php-ftp-client"
+            ],
+            "support": {
+                "issues": "https://github.com/lazzard/php-ftp-client/issues",
+                "source": "https://github.com/lazzard/php-ftp-client/tree/v1.6.0"
+            },
+            "time": "2022-01-31T16:57:05+00:00"
+        },
+        {
+            "name": "minicli/curly",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/minicli/curly.git",
+                "reference": "50c0e8813adf66f298b862a5150c0acc00f3f18e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/minicli/curly/zipball/50c0e8813adf66f298b862a5150c0acc00f3f18e",
+                "reference": "50c0e8813adf66f298b862a5150c0acc00f3f18e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Minicli\\Curly\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple Curl Client",
+            "homepage": "https://github.com/erikaheidi/minicli",
+            "keywords": [
+                "api",
+                "curl",
+                "wrapper"
+            ],
+            "support": {
+                "issues": "https://github.com/minicli/curly/issues",
+                "source": "https://github.com/minicli/curly/tree/master"
+            },
+            "time": "2020-02-24T10:33:43+00:00"
+        },
+        {
+            "name": "minicli/minicli",
+            "version": "2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/minicli/minicli.git",
+                "reference": "7a136614949b47d716769a037a1107e414bc4f38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/minicli/minicli/zipball/7a136614949b47d716769a037a1107e414bc4f38",
+                "reference": "7a136614949b47d716769a037a1107e414bc4f38",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "pestphp/pest": "^1.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "suggest": {
+                "ext-readline": "For obtaining user input"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Minicli\\": "src/",
+                    "Assets\\": "tests/Assets"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Experimental micro CLI framework for PHP",
+            "homepage": "https://github.com/minicli/minicli",
+            "keywords": [
+                "cli",
+                "command-line"
+            ],
+            "support": {
+                "issues": "https://github.com/minicli/minicli/issues",
+                "source": "https://github.com/minicli/minicli/tree/2.2.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/erikaheidi",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-10-30T07:30:03+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}

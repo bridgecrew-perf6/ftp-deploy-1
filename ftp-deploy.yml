@@ -1,0 +1,14 @@
+name: Ftp deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: sr-msilva/ftp-deploy@v1
+        name: 'Ftp deploy project'
+        env:
+          SERVER: ${{ secrets.server }}
+          USERNAME: ${{ secrets.acc }}
+          PASSWORD: ${{ secrets.pass }}
