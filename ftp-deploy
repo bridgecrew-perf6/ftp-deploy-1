@@ -16,12 +16,13 @@ $app = new App([
     'server' => getenv('SERVER'),
     'username' => getenv('USERNAME'),
     'password' => getenv('PASSWORD'),
+    'offset' => getenv('OFFSET') ?: 1
 ]);
 
 $app->registerCommand('ftp-deploy', function () use ($app) {
     $app->getPrinter()->info('check diff...');
 
-    $str_diff = `git diff --name-only HEAD HEAD~1`;
+    $str_diff = `git diff --name-only HEAD HEAD~{$app->config->offset}`;
 
     if (!empty($str_diff)) {
         $changes = preg_split('/\r\n|\n|\r/', $str_diff, -1, PREG_SPLIT_NO_EMPTY);
