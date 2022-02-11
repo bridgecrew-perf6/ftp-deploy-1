@@ -54,7 +54,7 @@ class FTPD
      */
     public function createItem($from, $to)
     {
-        if ($this->dirExists($to)) {
+        if (!@$this->dirExists($to)) {
             $this->mkdir($this->ftp, $to);
         }
 
