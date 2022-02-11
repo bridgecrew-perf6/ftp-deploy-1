@@ -43,11 +43,9 @@ $app->registerCommand('ftp-deploy', function () use ($app) {
 
                 foreach ($changes as $c) {
                     if (file_exists($c)) {
-                        $app->getPrinter()->info('Uploading file... ' . $c);
                         $destination =  dirname($c);
 
-                        if (!$client->isExists($destination))
-                            $client->createDir($destination);
+                        $app->getPrinter()->info('Uploading file... ' . $c . " to folder:" . $destination);
 
                         $client->copyFromLocal($c, $destination);
                     } else {
