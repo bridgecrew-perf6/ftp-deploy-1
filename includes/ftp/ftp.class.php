@@ -45,7 +45,7 @@ class FTPD
 
     public function dirExists($item)
     {
-        return @ftp_nlist($this->ftp, $item) === false;
+        return @ftp_nlist($this->ftp, $item) !== false;
     }
 
     /**
@@ -58,7 +58,10 @@ class FTPD
             $this->mkdir($this->ftp, $to);
         }
 
-        if (!@ftp_put($this->ftp, $to, $from))
+        $filename = basename($from);
+        $to = rtrim($to, '/');
+
+        if (!@ftp_put($this->ftp, $to . "/" . $filename, $from))
             error_log("FTP put failed upload file: $from in $to");
     }
 
@@ -73,17 +76,14 @@ class FTPD
      */
     public function mkdir($ftp, $ftpdir)
     {
-        @ftp_chdir($ftp, $ftpdir);
+        $dirs = array_filter(explode('/', $ftpdir), function ($e) {
+            return trim($e) != '';
+        });
 
-        $directory = ltrim($ftpdir, './');
-        $dirs      = explode('/', $directory);
-        $dirsCount = count($dirs);
-
-        for ($i = 1; $i <= $dirsCount; $i++) {
-            $dir = join('/', array_slice($dirs, 0, $i));
+        foreach ($dirs as $dir) {
             if (!@ftp_chdir($ftp, $dir)) {
-                @ftp_mkdir($ftp, $dir);
-                @ftp_chdir($ftp, $dir);
+                ftp_mkdir($ftp, $dir);
+                ftp_chdir($ftp, $dir);
             }
         }
     }
