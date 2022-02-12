@@ -83,8 +83,9 @@ class FTPD
         foreach ($dirs as $dir) {
             if (!$this->dirExists($ftp, $dir)) {
                 ftp_mkdir($ftp, $dir);
-                ftp_chdir($ftp, $dir);
             }
+
+            ftp_chdir($ftp, $dir);
         }
 
         ftp_chdir($ftp, '/');
