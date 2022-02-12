@@ -54,16 +54,14 @@ class FTPD
      */
     public function createItem($from, $to)
     {
-        if (!@$this->dirExists($to)) {
+        if (!$this->dirExists($to)) {
             $this->mkdir($this->ftp, $to);
         }
 
         $filename = basename($from);
-        $to = rtrim($to, '/');
+        $to = rtrim($to, '/') . "/$filename";
 
-        ftp_chdir($this->ftp, "/$to/");
-
-        if (!ftp_put($this->ftp, $filename, $from))
+        if (!ftp_put($this->ftp, $to, $from))
             error_log("FTP put failed upload file: $from in $to");
     }
 
@@ -83,10 +81,12 @@ class FTPD
         });
 
         foreach ($dirs as $dir) {
-            if (!@ftp_chdir($ftp, $dir)) {
+            if (!$this->dirExists($ftp, $dir)) {
                 ftp_mkdir($ftp, $dir);
                 ftp_chdir($ftp, $dir);
             }
         }
+
+        ftp_chdir($ftp, '/');
     }
 }
