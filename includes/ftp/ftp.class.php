@@ -59,9 +59,17 @@ class FTPD
         }
 
         $filename = basename($from);
+<<<<<<< HEAD
         $to = rtrim($to, '/') . "/$filename";
 
         if (!ftp_put($this->ftp, $to, $from))
+=======
+        $to = rtrim($to, '/');
+
+        ftp_chdir($this->ftp, "/$to/");
+
+        if (!ftp_put($this->ftp, $filename, $from))
+>>>>>>> 8ecfe6db8715caf4ae62e1670dccc0d667973bc2
             error_log("FTP put failed upload file: $from in $to");
     }
 
