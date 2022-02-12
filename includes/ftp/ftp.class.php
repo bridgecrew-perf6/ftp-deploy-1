@@ -81,7 +81,7 @@ class FTPD
         });
 
         foreach ($dirs as $dir) {
-            if (!$this->dirExists($ftp, $dir)) {
+            if (!$this->dirExists($dir)) {
                 ftp_mkdir($ftp, $dir);
             }
 
